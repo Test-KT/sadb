@@ -90,3 +90,4 @@ ENV/
 
 bin/
 .idea/
+.DS_Store
