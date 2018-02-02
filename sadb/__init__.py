@@ -6,6 +6,7 @@ from __future__ import print_function, unicode_literals #
 import re  #正则表达式库
 import subprocess  #用于执行外部命令和程序，比如shell或者cmd这些
 import sys #系统相关操作库
+import datetime
 from distutils.spawn import find_executable  #用于查找shell命令是否存在
 from pprint import pprint  #日志打印库
 
@@ -103,7 +104,8 @@ def exec_adb_cmd_on_device(device, args):
     """ 执行 adb 命令 """
     cmd = [adb_path, "-s", device['serial']] #组装adb命令
     cmd += args #添加上参数
-    print('\n[{model}]exec: adb -s {serial} {cmd}'.format(cmd=' '.join(args), serial=device['serial'], model=device['model']))
+    now=datetime.datetime.now()
+    print('\n[{timedate}] [{model}]exec: adb -s {serial} {cmd}'.format(cmd=' '.join(args), serial=device['serial'], model=device['model'],timedate=now.strftime("%Y-%m-%d %H:%M:%S")))
     subprocess.call(cmd)
 
 
