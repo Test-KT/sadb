@@ -106,7 +106,10 @@ def exec_adb_cmd_on_device(device, args):
     cmd += args #添加上参数
     now=datetime.datetime.now()
     print('\n[{timedate}] [{model}]exec: adb -s {serial} {cmd}'.format(cmd=' '.join(args), serial=device['serial'], model=device['model'],timedate=now.strftime("%Y-%m-%d %H:%M:%S")))
-    subprocess.call(cmd)
+    try:
+       subprocess.call(cmd)
+    except KeyboardInterrupt as e:
+        print('\nCancel the operation!')
 
 
 def dd(obj):
